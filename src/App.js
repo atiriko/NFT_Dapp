@@ -82,6 +82,7 @@ function App() {
       });
   };
   const withdraw = () => {
+    console.log(blockchain.smartContract.methods)
 
     blockchain.smartContract.methods
       .withdraw()
