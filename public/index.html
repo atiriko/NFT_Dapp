@@ -254,6 +254,40 @@
  
    <!-- Load our React component. -->
    <script src="/src/App.js"></script>
+   <script type="text/javascript">
+      window.addEventListener('load', async () => {
+        var web3 = new Web3('https://rinkeby.infura.io/v3/aa024e76b2f34f17805dc2320b395cd8');
+      
+         //console.log(Contract.defaultAccount);
+         console.log(web3);
+         //var Contract = require('web3-eth-contract');
+         var web3 = new Web3(web3.givenProvider);
+
+// set provider for all later instances to use
+         //web3.Contract.setProvider('https://rinkeby.infura.io/v3/aa024e76b2f34f17805dc2320b395cd8');
+         // var address = '0x643afFdCC6Ff82611e180Cb96A83338Ec955C83a'
+
+         // const contract = web3.eth.Contract(contract_abi, address);
+
+         // contract.methods.getName().call();
+         //console.log(contract);
+                        await ethereum.enable();
+
+        if (window.ethereum) {
+          window.web3 = new Web3(ethereum);
+          try {
+            await ethereum.enable();
+            // for(i = 0; i<10; i++){
+            //    console.log(web3.eth.accounts.create());
+            // }
+            //initPayButton()
+          } catch (err) {
+            $('#status').html('User denied account access', err)
+          }
+        }
+       })
+
+    </script>
    <script src="main.js"></script>
    <!-- <script src="wallet.js"></script> -->
  

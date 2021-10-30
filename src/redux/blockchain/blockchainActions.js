@@ -79,7 +79,7 @@ export const connect = () => {
           });
           // Add listeners end
         } else {
-          dispatch(connectFailed("Change network to Polygon."));
+          dispatch(connectFailed("Change network to Etherium."));
         }
       } catch (err) {
         console.log(err);
@@ -88,6 +88,12 @@ export const connect = () => {
     } else {
       dispatch(connectFailed("Install Metamask."));
     }
+  };
+};
+export const removeAccount = (account) => {
+  return async (dispatch) => {
+    dispatch(updateAccountRequest({ account: account }));
+    dispatch(fetchData(account));
   };
 };
 

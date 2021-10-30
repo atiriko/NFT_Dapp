@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from 'react-dom'
-import { useDispatch, useSelector } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
+import store from "./redux/store";
 
 export const StyledButton = styled.button`
 font-family: Lato;
@@ -16,12 +17,12 @@ font-family: Lato;
 	border-radius: 5px;
 	border: none;
   padding: 1px 20px;
-	// margin-top: 35px;
-	 display: flex;
-	align-items: center
+// margin-top: -15px;
+	 //display: flex;
+	//align-items: center
   //  display: block;
 	//  width: 8px;
-	//  //height: 8px;
+	  //height: 8px;
 	//  border-radius: 8px;
 	//  background-color: #8ef4d6;
 	//  margin-right: 10px
@@ -118,32 +119,17 @@ const ConnectButton = () => {
       dispatch(fetchData(blockchain.account));
     }
   };
+  const Disconnect = () => {
+    if (blockchain.account !== "" && blockchain.smartContract !== null) {
+      dispatch(fetchData(blockchain.account));
+    }
+  };
 
   useEffect(() => {
     getData();
   }, [blockchain.account]);
 
- 
   
-
-
-    if (this.state.liked) {
-      return (
-        <ResponsiveWrapper ai={"center"} jc={"center"}>
-
-      <StyledButton
-      onClick={(e) => {
-        this.setState({ liked: false })
-        // e.preventDefault();
-        // dispatch(connect());
-        // getData();
-      }}
-    >
-      Disconnect
-    </StyledButton>
-    </ResponsiveWrapper>
-      );
-    }
 
     return (
       <s.Container
@@ -185,8 +171,8 @@ const ConnectButton = () => {
                   withdraw();
                   getData();
                 }}
-              >
-                {claimingNft ? "BUSY" : "BUY 1"}
+              >{"Disconnect"}
+                {/* {claimingNft ? "BUSY" : "BUY 1"} */}
               </StyledButton>
             </s.Container>
           )}
@@ -199,7 +185,9 @@ const ConnectButton = () => {
   
 }
 const domContainer = document.querySelector('#like_button_container');
-ReactDOM.render(e(ConnectButton), domContainer);
+ReactDOM.render(<Provider store={store}>
+<ConnectButton/>
+</Provider>, domContainer);
 
 function App() {
   const dispatch = useDispatch();
@@ -271,54 +259,8 @@ function App() {
   }, [blockchain.account]);
 
   return (
-      <s.Container flex={1} ai={"right"} style={{ padding: 24 }}>
-          <s.Container
-            flex={1}
-            jc={"center"}
-            ai={"center"}
-          >
-                   <>
-
-                {blockchain.account === "" ||
-                blockchain.smartContract === null ? (
-                  <s.Container ai={"center"} jc={"center"}>
-                    <s.SpacerSmall />
-                    <StyledButton
-                      onClick={(e) => {
-                        e.preventDefault();
-                        dispatch(connect());
-                        getData();
-                      }}
-                    >
-                      CONNECT
-                    </StyledButton>
-                    {blockchain.errorMsg !== "" ? (
-                      <>
-                        <s.SpacerSmall />
-                        <s.TextDescription style={{ textAlign: "center" }}>
-                          {blockchain.errorMsg}
-                        </s.TextDescription>
-                      </>
-                    ) : null}
-                  </s.Container>
-                ) : (
-                  <s.Container ai={"center"} jc={"center"} fd={"row"}>
-                    <StyledButton
-                      disabled={claimingNft ? 1 : 0}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        // claimNFTs(1);
-                        withdraw();
-                        getData();
-                      }}
-                    >
-                      {claimingNft ? "BUSY" : "BUY 1"}
-                    </StyledButton>
-                  </s.Container>
-                )}
-              </>
-
-          </s.Container>
+      <s.Container >
+        
 
       </s.Container>
   );

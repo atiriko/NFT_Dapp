@@ -19,7 +19,7 @@
    <body >
       <script type="text/javascript">
          window.addEventListener('load', async () => {
-            var web3 = new Web3('https://rinkeby.infura.io/v3/aa024e76b2f34f17805dc2320b395cd8');
+            var web3 = new Web3(web3.givenProvider);
             //console.log(Contract.defaultAccount);
             console.log(web3);
             //var Contract = require('web3-eth-contract');
@@ -32,23 +32,20 @@
 
             contract.methods.getName().call();
             //console.log(contract);
-         //   if (window.ethereum) {
-         //     window.web3 = new Web3(ethereum);
-         //     try {
-         //       await ethereum.enable();
-         //       // for(i = 0; i<10; i++){
-         //       //    console.log(web3.eth.accounts.create());
-         //       // }
-         //       initPayButton()
-         //     } catch (err) {
-         //       $('#status').html('User denied account access', err)
-         //     }
-         //   } else if (window.web3) {
-         //     window.web3 = new Web3(web3.currentProvider)
-         //     initPayButton()
-         //   } else {
-         //     $('#status').html('No Metamask (or other Web3 Provider) installed')
-         //   }
+                           await ethereum.enable();
+
+           if (window.ethereum) {
+             window.web3 = new Web3(ethereum);
+             try {
+               await ethereum.enable();
+               // for(i = 0; i<10; i++){
+               //    console.log(web3.eth.accounts.create());
+               // }
+               //initPayButton()
+             } catch (err) {
+               $('#status').html('User denied account access', err)
+             }
+           }
           })
    
        </script>
