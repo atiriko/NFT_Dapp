@@ -1,11 +1,18 @@
 {
   "hosting": {
     "site": "foranimals",
-    "public": "public",
+    "public": "build",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/build/index.html"
+      }
     ]
   }
 }
+

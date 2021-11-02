@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import ReactDOM from 'react-dom'
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
@@ -13,19 +13,12 @@ font-family: Lato;
 	outline: none;
 	background: #172d42;
 	color: #fff;
-
 	border-radius: 5px;
 	border: none;
   padding: 1px 20px;
-// margin-top: -15px;
-	 //display: flex;
-	//align-items: center
-  //  display: block;
-	//  width: 8px;
-	  //height: 8px;
-	//  border-radius: 8px;
-	//  background-color: #8ef4d6;
-	//  margin-right: 10px
+	 border-radius: 8px;
+	// background-color: #8ef4d6;
+
 
 `;
 
@@ -129,7 +122,7 @@ const ConnectButton = () => {
     getData();
   }, [blockchain.account]);
 
-  
+ 
 
     return (
       <s.Container
@@ -149,8 +142,9 @@ const ConnectButton = () => {
                   dispatch(connect());
                   getData();
                 }}
+                
               >
-                CONNECT
+                Disconnected
               </StyledButton>
               {blockchain.errorMsg !== "" ? (
                 <>
@@ -162,19 +156,29 @@ const ConnectButton = () => {
               ) : null}
             </s.Container>
           ) : (
-            <s.Container ai={"center"} jc={"center"} fd={"row"}>
-              <StyledButton
-                disabled={claimingNft ? 1 : 0}
-                onClick={(e) => {
-                  e.preventDefault();
-                  // claimNFTs(1);
-                  withdraw();
-                  getData();
-                }}
-              >{"Disconnect"}
-                {/* {claimingNft ? "BUSY" : "BUY 1"} */}
-              </StyledButton>
-            </s.Container>
+            <s.Container ai={"center"} jc={"center"}>
+            <s.SpacerSmall />
+            <StyledButton
+              onClick={(e) => {
+                e.preventDefault();
+                // claimNFTs(1);
+                withdraw();
+                getData();
+              }}
+              
+            >
+              Connected
+            </StyledButton>
+            {blockchain.errorMsg == "" ? (
+              <>
+                <s.SpacerSmall />
+                <s.TextDescription style={{ textAlign: "center" }}>
+                  {blockchain.errorMsg}
+                </s.TextDescription>
+              </>
+            ) : null}
+          </s.Container>
+           
           )}
         </>
 
@@ -189,81 +193,20 @@ ReactDOM.render(<Provider store={store}>
 <ConnectButton/>
 </Provider>, domContainer);
 
-function App() {
+function App (){
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
-  // const data = useSelector((state) => state.data);
-  const [feedback, setFeedback] = useState("Maybe it's your lucky day.");
-  const [claimingNft, setClaimingNft] = useState(false);
 
-  const claimNFTs = (_amount) => {
-    if (_amount <= 0) {
-      return;
-    }
-    setFeedback("Minting your Nerdy Coder Clone...");
-    setClaimingNft(true);
-    blockchain.smartContract.methods
-      .mint(blockchain.account, _amount)
-      .send({
-        gasLimit: "285000",
-        to: "0x6666a1F91f76BE55A9D41c1f0515981f09a4536C",
-        from: blockchain.account,
-        value: blockchain.web3.utils.toWei((1 * _amount).toString(), "ether"),
-      })
-      .once("error", (err) => {
-        console.log(err);
-        setFeedback("Sorry, something went wrong please try again later.");
-        setClaimingNft(false);
-      })
-      .then((receipt) => {
-        setFeedback(
-          "WOW, you now own a Nerdy Coder Clone. go visit Opensea.io to view it."
-        );
-        setClaimingNft(false);
-        dispatch(fetchData(blockchain.account));
-      });
-  };
-  const withdraw = () => {
-    console.log(blockchain.smartContract.methods)
+  dispatch(connect())
 
-    blockchain.smartContract.methods
-      .withdraw()
-      .send({
-        gasLimit: "285000",
-        to: "0x6666a1F91f76BE55A9D41c1f0515981f09a4536C",
-        from: blockchain.account,
-        value: blockchain.web3.utils.toWei((0).toString(), "ether"),
-      })
-      .once("error", (err) => {
-        console.log(err);
-        setFeedback("Sorry, something went wrong please try again later.");
-        setClaimingNft(false);
-      })
-      .then((receipt) => {
-        setFeedback(
-          "WOW, you now own a Nerdy Coder Clone. go visit Opensea.io to view it."
-        );
-        setClaimingNft(false);
-        dispatch(fetchData(blockchain.account));
-      });
-  };
+    return (
+        <div>
 
-  const getData = () => {
-    if (blockchain.account !== "" && blockchain.smartContract !== null) {
-      dispatch(fetchData(blockchain.account));
-    }
-  };
+        </div>
+    )
 
-  useEffect(() => {
-    getData();
-  }, [blockchain.account]);
 
-  return (
-      <s.Container >
-        
 
-      </s.Container>
-  );
 }
 
 export default App;

@@ -4,8 +4,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./redux/store";
 import { Provider } from "react-redux";
-import "./styles/reset.css";
 import "./styles/theme.css";
+import "./styles/app.69196794.css";
 
 ReactDOM.render(
   <Provider store={store}>

@@ -920,7 +920,7 @@
 	}
 }
 
-.content-wallet[data-v-19a87593] {
+/* .content-wallet[data-v-19a87593] {
 	margin-left: auto;
 	margin-right: 30px
 }
@@ -964,7 +964,7 @@
 	display: inline-block;
 	min-width: 30px;
 	text-align: left
-}
+} */
 
 @-webkit-keyframes background-animation {
 	to {
@@ -1174,7 +1174,7 @@ h4 {
 	padding: 0 10px
 }
 
-#connection .connect,
+/* #connection .connect,
 #connection .disconnect {
 	font-family: Lato;
 	font-size: 1.6rem;
@@ -1206,7 +1206,7 @@ h4 {
 
 #connection .disconnect span {
 	background-color: #fa5c7e
-}
+} */
 
 #hero {
 	padding: 50px 0 0 0;

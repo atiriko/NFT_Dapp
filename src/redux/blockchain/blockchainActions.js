@@ -82,8 +82,9 @@ export const connect = () => {
           dispatch(connectFailed("Change network to Etherium."));
         }
       } catch (err) {
-        console.log(err);
-        dispatch(connectFailed("Something went wrong."));
+        dispatch(connectFailed("Waiting for permission"));
+
+
       }
     } else {
       dispatch(connectFailed("Install Metamask."));
