@@ -45,7 +45,6 @@ export const StyledImg = styled.img`
   transition: height 0.5s;
 `;
 
-const e = React.createElement;
 
 
 const ConnectButton = () => {
@@ -106,8 +105,7 @@ const ConnectButton = () => {
     >
              <>
 
-          {blockchain.account === "" ||
-          blockchain.smartContract === null ? (
+          {blockchain.account === undefined ? (
             <s.Container ai={"center"} jc={"center"}>
               <s.SpacerSmall />
               <StyledButton
@@ -135,22 +133,17 @@ const ConnectButton = () => {
             <StyledButton
               onClick={(e) => {
                 e.preventDefault();
+                console.log(blockchain.account)
                 // claimNFTs(1);
-                withdraw();
+                //withdraw();
                 getData();
               }}
               
             >
               Connected
             </StyledButton>
-            {blockchain.errorMsg == "" ? (
-              <>
-                <s.SpacerSmall />
-                <s.TextDescription style={{ textAlign: "center" }}>
-                  {blockchain.errorMsg}
-                </s.TextDescription>
-              </>
-            ) : null}
+            <s.SpacerSmall />
+
           </s.Container>
            
           )}
@@ -228,7 +221,7 @@ const MintButton = () => {
     >
              <>
 
-          {blockchain.account === "" ||
+          {blockchain.account === undefined ||
           blockchain.smartContract === null ? (
             <s.Container ai={"center"} jc={"center"}>
               <s.SpacerSmall />
@@ -240,7 +233,7 @@ const MintButton = () => {
                 }}
                 
               >
-                Disconnected
+                Connect your wallet
               </StyledButton>
               
             </s.Container>
@@ -287,43 +280,33 @@ const WithdrawButton = () => {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   // const data = useSelector((state) => state.data);
-  const [feedback, setFeedback] = useState("Maybe it's your lucky day.");
   const [claimingNft, setClaimingNft] = useState(false);
 
-  const claimNFTs = (_amount) => {
-    if (_amount <= 0) {
-      return;
-    }
-    setFeedback("Minting your Nerdy Coder Clone...");
+  //var isOwner;
+
+  const withdraw = () => {
     setClaimingNft(true);
     blockchain.smartContract.methods.
-      setBaseURI("https://foranimals.web.app/assets/")
-      .call()
-      .then(function(result) {
-        console.log("r-->"+result);
-    })
-    .catch(function(err) {
-        console.log("err-->"+err);
-    })
-      // .send({
-      //   gasLimit: "285000",
-      //   to: "0x6666a1F91f76BE55A9D41c1f0515981f09a4536C",
-      //   from: blockchain.account,
-      // })          .on('out', (out) => {console.log(out)})
-
-      // .once("error", (err) => {
-      //   console.log(err);
-      //   setFeedback("Sorry, something went wrong please try again later.");
-      //   setClaimingNft(false);
-      // })
-      // .then((receipt) => {
-      //   setFeedback(
-      //     "WOW, you now own a Nerdy Coder Clone. go visit Opensea.io to view it."
-      //   );
-      //   console.log(receipt);
-      //   setClaimingNft(false);
-      //   dispatch(fetchData(blockchain.account));
-      // });
+    withdraw()
+    //   .call()
+    //   .then(function(result) {
+    //     console.log("r-->"+result);
+    // })
+    // .catch(function(err) {
+    //     console.log("err-->"+err);
+    // })
+      .send({
+        gasLimit: "285000",
+        to: "0x6666a1F91f76BE55A9D41c1f0515981f09a4536C",
+        from: blockchain.account,
+      }) 
+      .once("error", (err) => {
+        setClaimingNft(false);
+      })
+      .then((receipt) => {
+        setClaimingNft(false);
+        dispatch(fetchData(blockchain.account));
+      });
   };
   
 
@@ -332,14 +315,13 @@ const WithdrawButton = () => {
       dispatch(fetchData(blockchain.account));
     }
   };
-  const Disconnect = () => {
-    if (blockchain.account !== "" && blockchain.smartContract !== null) {
-      dispatch(fetchData(blockchain.account));
-    }
-  };
+
+ 
 
   useEffect(() => {
     getData();
+    console.log(blockchain.account)
+   
   }, [blockchain.account]);
 
  
@@ -352,27 +334,7 @@ const WithdrawButton = () => {
     >
              <>
 
-          {blockchain.account === "" ||
-          blockchain.smartContract === null ? (
-            <s.Container ai={"center"} jc={"center"}>
-              <s.SpacerSmall />
-              <StyledButton
-                onClick={(e) => {
-                  e.preventDefault();
-                  dispatch(connect());
-                  getData();
-                }}
-                
-              >
-                Disconnected
-              </StyledButton>
-              
-            </s.Container>
-          ) : (
-            <s.Container ai={"center"} jc={"center"}>
-            <s.SpacerSmall />
-            
-            {blockchain.account == "0x6666a1f91f76be55a9d41c1f0515981f09a4536c" ? (
+             {blockchain.account === "0x6666a1f91f76be55a9d41c1f0515981f09a4536c" ? (
               <>
                 <StyledButton
               onClick={(e) => {
@@ -380,19 +342,17 @@ const WithdrawButton = () => {
 
                 // blockchain.smartContract.methods.owner()
 
-               claimNFTs(29);
-                //withdraw();
+                withdraw();
                 getData();
               }}
               
             >
-              Mint 1 for 0.1 ETH
+              Withdraw
             </StyledButton>
+            <s.SpacerSmall/>
+        
               </>
             ) : null}
-          </s.Container>
-           
-          )}
         </>
 
     </s.Container>
@@ -410,7 +370,7 @@ ReactDOM.render(<Provider store={store}>
 function App (){
 const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
-  console.log(blockchain.account)
+
   useEffect(() => {
     dispatch(connect())
 

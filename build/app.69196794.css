@@ -2012,6 +2012,15 @@ footer#footer .contract a:hover {
 	.icesmall1 {
 		display: none
 	}
+  .icesmall2 {
+		display: none
+	}
+  .icesmall3 {
+		display: none
+	}	
+  .icesmall4 {
+		display: none
+	}
 	#hero {
 		overflow-x: hidden;
 		flex-direction: column;
@@ -2117,7 +2126,7 @@ footer#footer .contract a:hover {
 		left: -890px
 	}
 	footer {
-		margin-bottom: 100px
+		/* margin-bottom: 100px */
 	}
 	#reveal {
 		flex-wrap: wrap
