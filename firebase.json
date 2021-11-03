@@ -10,7 +10,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/build/index.html"
+        "destination": "/public/index.html"
       }
     ]
   }

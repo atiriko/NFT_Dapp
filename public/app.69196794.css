@@ -29,7 +29,7 @@
 	list-style: none;
 	text-align: left;
 	font-weight: 100;
-	max-width: 30%
+	max-width: 60%
 }
 
 .timeline .event {
@@ -1104,6 +1104,7 @@ html {
 }
 
 body {
+	max-height: 4300px;
 	font: 1.8em/2 sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -1542,6 +1543,7 @@ h4 {
 	width: 133.332%
 }
 
+
 .iceberg1,
 .iceberg3,
 .iceberg4,
@@ -1552,6 +1554,15 @@ h4 {
 
 .iceberg2,
 .icesmall2 {
+	-webkit-animation: floating-scaleX 10s infinite;
+	animation: floating-scaleX 10s infinite
+}
+.icesmall3 {
+	-webkit-animation: floating 10s infinite;
+	animation: floating 10s infinite
+}
+
+.icesmall4{
 	-webkit-animation: floating-scaleX 10s infinite;
 	animation: floating-scaleX 10s infinite
 }
@@ -1570,6 +1581,7 @@ h4 {
 .iceberg1 {
 	top: -640px;
 	right: -890px;
+	
 	-webkit-animation-delay: 0s;
 	animation-delay: 0s
 }
@@ -1579,7 +1591,7 @@ h4 {
 	width: 1070px;
 	height: 1011px;
 	position: absolute;
-	background: url(images/ice1.svg);
+	background: url(images/ice1.png);
 	background-repeat: no-repeat;
 	z-index: -1
 }
@@ -1587,17 +1599,19 @@ h4 {
 .iceberg2 {
 	transform: scaleX(-1);
 	top: -490px;
-	left: -890px;
+	right: calc(-30% - 250px);
+
+	/* left: -890px; */
 	-webkit-animation-delay: 1s;
 	animation-delay: 1s
 }
 
 .iceberg3 {
 	height: 1011px;
-	background: url(images/ice1.svg);
+	background: url(images/ice2.png);
 	background-repeat: no-repeat;
-	top: 500px;
-	right: -1060px;
+	top: -10px;
+	right: calc(-1% + 1300px);
 	-webkit-animation-delay: -2s;
 	animation-delay: -2s
 }
@@ -1611,7 +1625,7 @@ h4 {
 
 .iceberg4 {
 	height: 650px;
-	background: url(images/ice2.svg);
+	background: url(images/exotic1.png);
 	background-repeat: no-repeat;
 	bottom: -130px;
 	left: -690px;
@@ -1619,28 +1633,66 @@ h4 {
 	animation-delay: -3s
 }
 
-.icesmall1 {
-	top: -231px;
+
+
+.icesmall1{
+	top: 1001px;
 	right: -170px;
 	-webkit-animation-delay: -5s;
-	animation-delay: -5s
-}
-
-.icesmall1,
-.icesmall2 {
-	width: 140px;
-	height: 116px;
+	animation-delay: -5s;
+	width: 1400px;
+	height: 1106px;
 	position: absolute;
-	background: url(images/icesmall.svg);
+	background: url(images/exotic2.png);
+	right: calc(-60% - 500px);
+
 	background-repeat: no-repeat;
+
 	z-index: -1
 }
-
 .icesmall2 {
-	transform: scaleX(-1);
-	bottom: -231px;
-	left: -150px
+	width: 1400px;
+	height: 1160px;
+	position: absolute;
+	background: url(images/exotic1.png);
+	background-repeat: no-repeat;
+	top: 501px;
+	right: calc(-1% + 1300px);
+	z-index: -1
 }
+ 
+
+/* second layer */
+
+
+.icesmall3{
+	right: -10px;
+	-webkit-animation-delay: -5s;
+	animation-delay: -5s;
+	width: 1400px;
+	height: 1106px;
+	position: absolute;
+	right: calc(20% + 400px);
+	bottom: -500px;
+	background: url(images/tree1.png);
+	
+	background-repeat: no-repeat;
+
+	z-index: -1
+}
+.icesmall4 {
+	width: 1400px;
+	height: 1160px;
+	position: absolute;
+	background: url(images/tree2.png);
+	background-repeat: no-repeat;
+	z-index: -1;
+	bottom: -500px;
+	right: calc(-25% + 400px);
+
+
+}
+ 
 
 #roadmap {
 	padding: 0 50px;
