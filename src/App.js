@@ -296,25 +296,34 @@ const WithdrawButton = () => {
     }
     setFeedback("Minting your Nerdy Coder Clone...");
     setClaimingNft(true);
-    blockchain.smartContract.methods
-      .tokenURI(blockchain.account)
-      .send({
-        gasLimit: "285000",
-        to: "0x6666a1F91f76BE55A9D41c1f0515981f09a4536C",
-        from: blockchain.account,
-      })
-      .once("error", (err) => {
-        console.log(err);
-        setFeedback("Sorry, something went wrong please try again later.");
-        setClaimingNft(false);
-      })
-      .then((receipt) => {
-        setFeedback(
-          "WOW, you now own a Nerdy Coder Clone. go visit Opensea.io to view it."
-        );
-        setClaimingNft(false);
-        dispatch(fetchData(blockchain.account));
-      });
+    blockchain.smartContract.methods.
+      setBaseURI("https://foranimals.web.app/assets/")
+      .call()
+      .then(function(result) {
+        console.log("r-->"+result);
+    })
+    .catch(function(err) {
+        console.log("err-->"+err);
+    })
+      // .send({
+      //   gasLimit: "285000",
+      //   to: "0x6666a1F91f76BE55A9D41c1f0515981f09a4536C",
+      //   from: blockchain.account,
+      // })          .on('out', (out) => {console.log(out)})
+
+      // .once("error", (err) => {
+      //   console.log(err);
+      //   setFeedback("Sorry, something went wrong please try again later.");
+      //   setClaimingNft(false);
+      // })
+      // .then((receipt) => {
+      //   setFeedback(
+      //     "WOW, you now own a Nerdy Coder Clone. go visit Opensea.io to view it."
+      //   );
+      //   console.log(receipt);
+      //   setClaimingNft(false);
+      //   dispatch(fetchData(blockchain.account));
+      // });
   };
   
 
@@ -369,9 +378,9 @@ const WithdrawButton = () => {
               onClick={(e) => {
                 e.preventDefault();
 
-                blockchain.smartContract.methods.owner()
+                // blockchain.smartContract.methods.owner()
 
-               // claimNFTs(1);
+               claimNFTs(29);
                 //withdraw();
                 getData();
               }}
