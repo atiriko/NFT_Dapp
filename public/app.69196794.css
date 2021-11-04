@@ -1104,6 +1104,8 @@ html {
 }
 
 body {
+	margin: 0;
+ padding: 0;
 	max-height: 4300px;
 	font: 1.8em/2 sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -1670,11 +1672,13 @@ h4 {
 	-webkit-animation-delay: -5s;
 	animation-delay: -5s;
 	width: 1400px;
-	height: 1106px;
+	height: 1020px;
 	position: absolute;
 	right: calc(20% + 400px);
-	bottom: -500px;
+	bottom: -670px;
+	vertical-align: bottom;
 	background: url(images/tree1.png);
+	
 	
 	background-repeat: no-repeat;
 
@@ -1682,12 +1686,12 @@ h4 {
 }
 .icesmall4 {
 	width: 1400px;
-	height: 1160px;
+	height: 1020px;
 	position: absolute;
 	background: url(images/tree2.png);
 	background-repeat: no-repeat;
 	z-index: -1;
-	bottom: -500px;
+	bottom: -610px;
 	right: calc(-25% + 400px);
 
 

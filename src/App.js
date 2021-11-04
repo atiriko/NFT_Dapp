@@ -55,41 +55,14 @@ const ConnectButton = () => {
   const [claimingNft, setClaimingNft] = useState(false);
 
   
-  const withdraw = () => {
-    console.log(blockchain.smartContract.methods)
 
-    blockchain.smartContract.methods
-      .withdraw()
-      .send({
-        gasLimit: "285000",
-        to: "0x6666a1F91f76BE55A9D41c1f0515981f09a4536C",
-        from: blockchain.account,
-        value: blockchain.web3.utils.toWei((0).toString(), "ether"),
-      })
-      .once("error", (err) => {
-        console.log(err);
-        setFeedback("Sorry, something went wrong please try again later.");
-        setClaimingNft(false);
-      })
-      .then((receipt) => {
-        setFeedback(
-          "WOW, you now own a Nerdy Coder Clone. go visit Opensea.io to view it."
-        );
-        setClaimingNft(false);
-        dispatch(fetchData(blockchain.account));
-      });
-  };
 
   const getData = () => {
     if (blockchain.account !== "" && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
     }
   };
-  const Disconnect = () => {
-    if (blockchain.account !== "" && blockchain.smartContract !== null) {
-      dispatch(fetchData(blockchain.account));
-    }
-  };
+
 
   useEffect(() => {
     getData();
@@ -112,7 +85,12 @@ const ConnectButton = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   dispatch(connect());
+                  if(blockchain.errorMsg == "Install Metamask."){
+                    const tab = window.open('https://metamask.io/', '_blank');
+
+                  }
                   getData();
+                  
                 }}
                 
               >
