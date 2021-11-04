@@ -105,7 +105,7 @@ const ConnectButton = () => {
     >
              <>
 
-          {blockchain.account === undefined ? (
+          {blockchain.account === undefined || blockchain.account == null ? (
             <s.Container ai={"center"} jc={"center"}>
               <s.SpacerSmall />
               <StyledButton
