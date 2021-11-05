@@ -120,9 +120,10 @@ const ConnectButton = () => {
                 e.preventDefault();
                 console.log(blockchain.account)
                 blockchain.smartContract.methods.
-                baseURI()
+                cost()
                   .call()
                   .then(function(result) {
+
                     console.log(result);
                 })
                 .catch(function(err) {
@@ -165,15 +166,21 @@ const MintButton = () => {
     if (_amount <= 0) {
       return;
     }
+    
     setFeedback("Minting your Nerdy Coder Clone...");
     setClaimingNft(true);
-    blockchain.smartContract.methods
+    blockchain.smartContract.methods.cost()
+    .call()
+    .then(function(result) {
+      console.log();
+
+      blockchain.smartContract.methods
       .mint(blockchain.account, _amount)
       .send({
         gasLimit: "285000",
         to: "0x6666a1F91f76BE55A9D41c1f0515981f09a4536C",
         from: blockchain.account,
-        value: blockchain.web3.utils.toWei((1 * _amount).toString(), "ether"),
+        value: blockchain.web3.utils.toWei((blockchain.web3.utils.fromWei((result).toString(), "ether") * _amount).toString(), "ether"),
       })
       .once("error", (err) => {
         console.log(err);
@@ -187,6 +194,8 @@ const MintButton = () => {
         setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
       });
+  })
+    
   };
   
 
@@ -270,63 +279,59 @@ ReactDOM.render(<Provider store={store}>
 <MintButton/>
 </Provider>, dom);
 
-const WithdrawButton = () => {
+const AdminPanel = () => {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   // const data = useSelector((state) => state.data);
-  const [claimingNft, setClaimingNft] = useState(false);
   const [NewUrl, setName] = useState("");
+  const [NewPrice, setPrice] = useState();
 
 
   //var isOwner;
 
   const withdraw = () => {
-    setClaimingNft(true);
     blockchain.smartContract.methods.
     withdraw()
-    //   .call()
-    //   .then(function(result) {
-    //     console.log("r-->"+result);
-    // })
-    // .catch(function(err) {
-    //     console.log("err-->"+err);
-    // })
       .send({
         gasLimit: "285000",
         to: "0x6666a1F91f76BE55A9D41c1f0515981f09a4536C",
         from: blockchain.account,
       }) 
       .once("error", (err) => {
-        setClaimingNft(false);
       })
       .then((receipt) => {
-        setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
       });
   };
   const changeUrl = (newUrl) => {
     blockchain.smartContract.methods.
     setBaseURI(newUrl)
-    //   .call()
-    //   .then(function(result) {
-    //     console.log("r-->"+result);
-    // })
-    // .catch(function(err) {
-    //     console.log("err-->"+err);
-    // })
       .send({
         gasLimit: "285000",
         // to: "0x643afFdCC6Ff82611e180Cb96A83338Ec955C83a",
         from: blockchain.account,
       }) 
       .once("error", (err) => {
-        setClaimingNft(false);
       })
       .then((receipt) => {
-        setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
       });
   };
+  const changePrice = (newPrie) => {
+    blockchain.smartContract.methods.
+    setCost(blockchain.web3.utils.toWei((newPrie).toString(), "ether"))
+      .send({
+        gasLimit: "285000",
+        // to: "0x643afFdCC6Ff82611e180Cb96A83338Ec955C83a",
+        from: blockchain.account,
+      }) 
+      .once("error", (err) => {
+      })
+      .then((receipt) => {
+        dispatch(fetchData(blockchain.account));
+      });
+  };
+  
   
 
   const getData = () => {
@@ -396,6 +401,31 @@ const WithdrawButton = () => {
               Update url
             </StyledButton>
     </div>
+    <div
+
+>
+  <TextField
+    value={NewPrice}
+    label="Set Price"
+    onChange={(e) => {
+      setPrice(parseInt(e.target.value));
+    }}
+  />
+         <StyledButton
+          onClick={(e) => {
+            e.preventDefault();
+
+            //console.log(NewUrl)
+            changePrice(NewPrice)
+
+            // withdraw();
+            // getData();
+          }}
+          
+        >
+          Update Price
+        </StyledButton>
+</div>
     </MuiThemeProvider>
 
                 </>
@@ -411,7 +441,7 @@ const WithdrawButton = () => {
 
 const dom1 = document.querySelector('#withdraw_button_container');
 ReactDOM.render(<Provider store={store}>
-<WithdrawButton/>
+<AdminPanel/>
 </Provider>, dom1);
 
 function App (){
