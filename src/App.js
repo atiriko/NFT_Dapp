@@ -6,6 +6,13 @@ import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
 import store from "./redux/store";
+import TextField from 'material-ui/TextField';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+
+// import TextField from "../node_modules/material-ui/TextField";
+
+
 
 export const StyledButton = styled.button`
 font-family: Lato;
@@ -112,6 +119,15 @@ const ConnectButton = () => {
               onClick={(e) => {
                 e.preventDefault();
                 console.log(blockchain.account)
+                blockchain.smartContract.methods.
+                baseURI()
+                  .call()
+                  .then(function(result) {
+                    console.log(result);
+                })
+                .catch(function(err) {
+                    console.log(err);
+                })
                 // claimNFTs(1);
                 //withdraw();
                 getData();
@@ -259,6 +275,8 @@ const WithdrawButton = () => {
   const blockchain = useSelector((state) => state.blockchain);
   // const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
+  const [NewUrl, setName] = useState("");
+
 
   //var isOwner;
 
@@ -276,6 +294,29 @@ const WithdrawButton = () => {
       .send({
         gasLimit: "285000",
         to: "0x6666a1F91f76BE55A9D41c1f0515981f09a4536C",
+        from: blockchain.account,
+      }) 
+      .once("error", (err) => {
+        setClaimingNft(false);
+      })
+      .then((receipt) => {
+        setClaimingNft(false);
+        dispatch(fetchData(blockchain.account));
+      });
+  };
+  const changeUrl = (newUrl) => {
+    blockchain.smartContract.methods.
+    setBaseURI(newUrl)
+    //   .call()
+    //   .then(function(result) {
+    //     console.log("r-->"+result);
+    // })
+    // .catch(function(err) {
+    //     console.log("err-->"+err);
+    // })
+      .send({
+        gasLimit: "285000",
+        // to: "0x643afFdCC6Ff82611e180Cb96A83338Ec955C83a",
         from: blockchain.account,
       }) 
       .once("error", (err) => {
@@ -328,8 +369,36 @@ const WithdrawButton = () => {
               Withdraw
             </StyledButton>
             <s.SpacerSmall/>
-        
-              </>
+            <MuiThemeProvider>
+
+            <div
+
+    >
+      <TextField
+        value={NewUrl}
+        label="Set Base Url"
+        onChange={(e) => {
+          setName(e.target.value);
+        }}
+      />
+             <StyledButton
+              onClick={(e) => {
+                e.preventDefault();
+
+                //console.log(NewUrl)
+                changeUrl(NewUrl)
+
+                // withdraw();
+                // getData();
+              }}
+              
+            >
+              Update url
+            </StyledButton>
+    </div>
+    </MuiThemeProvider>
+
+                </>
             ) : null}
         </>
 
