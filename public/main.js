@@ -1,33 +1,59 @@
 
+var canvas;
 
+class Star {
+  constructor(x, y, brightness) {
+    this.height = height;
+    this.width = width;
+    this.brightness = brightness;
+    draw();
+  }
+  draw(){
+    fill(255);
+    noStroke()
+    ellipse(x,y,20,20);
 
-// // }
-// const ethereumButton = document.querySelector('.enableEthereumButton');
+  }
+}
+// let star = new Star(2,2,2);
 
-// ethereumButton.addEventListener('click', () => {
-//     console.log("tikladin")
+var xs = [];
+var ys = [];
+function setup(){
+  canvas = createCanvas(windowWidth,5300)
+  canvas.position(0,0)
+  canvas.style('z-index', '-2')
+  // background(255);
+  for(let i = 0; i < 5000; i++){
 
-//   //Will Start the metamask extension
-//   ethereum.request({ method: 'eth_requestAccounts' });
-// });
+    // map(sin(frameCount)-1,1,0,255)
+    // console.log(sin(frameCount))
+    xs.push(random(0,windowWidth))
+    ys.push(random(0,canvas.height))
 
-function buttonClicked(){
-  console.log("tikladin")
-    // if (window.ethereum) {
-    //   window.web3 = new Web3(ethereum);
-    //   try {
-    //     await ethereum.enable();
-    //     initPayButton()
-    //   } catch (err) {
-    //     $('#status').html('User denied account access', err)
-    //   }
-    // } else if (window.web3) {
-    //   window.web3 = new Web3(web3.currentProvider)
-    //   initPayButton()
-    // } else {
-    //   $('#status').html('No Metamask (or other Web3 Provider) installed')
-    // }
- 
+  }
+
+  
+}
+function windowResized(){
+  resizeCanvas(windowWidth,windowHeight)
+
+}
+
+function draw(){
+  fill(map(sin(frameCount*0.02),-1,1,50,255)); 
+   background(0);
+
+  for(let i = 0; i < 5000; i++){
+    // map(sin(frameCount)-1,1,0,255)
+    // console.log(sin(frameCount))
+
+    noStroke()
+    ellipse(xs[i],ys[i],2,2);
+  }
+  
+  
+  // star.draw();
 
 }
 

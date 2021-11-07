@@ -13,7 +13,7 @@ contract foranimals is ERC721Enumerable, Ownable {
 
   string public baseURI;
   string public baseExtension = ".json";
-  uint256 public cost = 1 ether;
+  uint256 public cost = 0.1 ether;
   uint256 public maxSupply = 10000;
   uint256 public maxMintAmount = 20;
   bool public paused = false;
