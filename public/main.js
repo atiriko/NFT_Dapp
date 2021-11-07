@@ -2,27 +2,34 @@
 var canvas;
 
 class Star {
-  constructor(x, y, brightness) {
-    this.height = height;
-    this.width = width;
+  constructor(x, y, brightness, isRed) {
+    this.x = x;
+    this.y = y;
+    this.isRed = isRed
     this.brightness = brightness;
-    draw();
+    //draw();
   }
   draw(){
-    fill(255);
+    if (this.isRed){
+      fill(this.brightness, this.brightness-20, this.brightness-20);
+    }else{
+      fill(this.brightness-20, this.brightness-20, this.brightness);
+    }
     noStroke()
-    ellipse(x,y,20,20);
+    ellipse(this.x,this.y,2,2);
 
   }
 }
-// let star = new Star(2,2,2);
+
 
 var xs = [];
 var ys = [];
+
 function setup(){
-  canvas = createCanvas(windowWidth,5300)
+  canvas = createCanvas(windowWidth,4900)
   canvas.position(0,0)
   canvas.style('z-index', '-2')
+ 
   // background(255);
   for(let i = 0; i < 5000; i++){
 
@@ -33,27 +40,40 @@ function setup(){
 
   }
 
-  
 }
 function windowResized(){
-  resizeCanvas(windowWidth,windowHeight)
+  resizeCanvas(windowWidth,4900)
+  xs=[]
+  ys=[]
+  for(let i = 0; i < 5000; i++){
+
+    // map(sin(frameCount)-1,1,0,255)
+    // console.log(sin(frameCount))
+    xs.push(random(0,windowWidth))
+    ys.push(random(0,canvas.height))
+
+  }
 
 }
 
 function draw(){
-  fill(map(sin(frameCount*0.02),-1,1,50,255)); 
-   background(0);
-
+  // fill(map(sin(frameCount*0.02),-1,1,50,255)); 
+ //background(0);
+  noStroke();
+  let star;
+  
   for(let i = 0; i < 5000; i++){
     // map(sin(frameCount)-1,1,0,255)
-    // console.log(sin(frameCount))
 
-    noStroke()
-    ellipse(xs[i],ys[i],2,2);
+
+   star = new Star(xs[i],ys[i],map(sin(i+frameCount*0.02),-1,1,50,255), i%2 == 0);
+   star.draw();
+
+    // ellipse(xs[i],ys[i],2,2);
   }
+
+ 
   
-  
-  // star.draw();
 
 }
 
