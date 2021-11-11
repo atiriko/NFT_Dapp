@@ -1512,9 +1512,41 @@ h4 {
 	width: 133.332%
 }
 
+.iceberg3{
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 50000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
 
+    
+    animation-name: spin;
+    animation-duration: 50000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+}
+@-ms-keyframes spin {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
 .iceberg1,
-.iceberg3,
+
 .iceberg4,
 .icesmall1 {
 	-webkit-animation: floating 10s infinite;
@@ -1557,18 +1589,19 @@ h4 {
 
 .iceberg1,
 .iceberg2 {
-	width: 1070px;
-	height: 1011px;
+	width: 570px;
+	height: 511px;
 	position: absolute;
 	background: url(images/ice1.png);
 	background-repeat: no-repeat;
+    background-size: 50%, 50%;
 	z-index: -1
 }
 
 .iceberg2 {
 	transform: scaleX(-1);
 	top: -490px;
-	right: calc(-30% - 250px);
+	right: calc(-30% - 50px);
 
 	/* left: -890px; */
 	-webkit-animation-delay: 1s;
@@ -1576,16 +1609,22 @@ h4 {
 }
 
 .iceberg3 {
-	height: 1011px;
+	height: 111px;
+    width: 170px;
+
 	background: url(images/ice2.png);
+
 	background-repeat: no-repeat;
-	top: -10px;
-	right: calc(-1% + 1300px);
-	-webkit-animation-delay: -2s;
-	animation-delay: -2s
+    background-size: 100% 100%;
+
+	top: 200px;
+	right: calc(-1% + 1800px);
+	position: absolute;
+	z-index: -1
+	/* -webkit-animation-delay: -2s;
+	animation-delay: -2s */
 }
 
-.iceberg3,
 .iceberg4 {
 	width: 1070px;
 	position: absolute;

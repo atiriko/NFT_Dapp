@@ -315,6 +315,15 @@
  
    <div id="footer" class="icesmall3"></div>
    <div id="footer2" class="icesmall4"></div>
+   <script>var x ;
+   if(window.event) { // IE                  
+     x = e.keyCode;
+   } else if(e.which){ // Netscape/Firefox/Opera                 
+     x = e.which;
+   }
+    
+   console.log(x)
+   </script>
       
    <script src="/src/App.js"></script>
 
