@@ -1698,7 +1698,7 @@ h4 {
 	background-repeat: no-repeat;
 	z-index: -1;
 	bottom: -610px;
-	right: calc(-25% + 400px);
+	right: calc(50% - 1300px);
 
 
 }
@@ -2014,10 +2014,12 @@ footer#footer .contract a:hover {
 		justify-content: center;
 		text-align: center
 	}
+	
 }
 
 @media(max-width:800px) {
 	.iceberg1,
+	.iceberg2,
 	.iceberg3,
 	.icesmall1 {
 		display: none
@@ -2223,6 +2225,7 @@ footer#footer .contract a:hover {
 	.icesmall2 {
 		display: none
 	}
+	
 	#reveal .countdown .time {
 		width: 100%;
 		font-size: 30px
