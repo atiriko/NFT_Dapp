@@ -920,52 +920,6 @@
 	}
 }
 
-/* .content-wallet[data-v-19a87593] {
-	margin-left: auto;
-	margin-right: 30px
-}
-
-.connect[data-v-19a87593],
-.disconnect[data-v-19a87593] {
-	background-color: #fff;
-	border-radius: 3px;
-	padding: 5px 20px 6px 20px;
-	display: inline-block;
-	font-size: 16px;
-	transition: filter .2s;
-	color: #000
-}
-
-.connect span[data-v-19a87593],
-.disconnect span[data-v-19a87593] {
-	display: inline-block;
-	width: 8px;
-	height: 8px;
-	background-color: #c0c835;
-	border-radius: 50%;
-	vertical-align: middle;
-	margin: 0 10px 0 0
-}
-
-.disconnect[data-v-19a87593] {
-	cursor: pointer;
-	margin-left: auto
-}
-
-.disconnect span[data-v-19a87593] {
-	background-color: #d82b2b
-}
-
-.disconnect[data-v-19a87593]:hover {
-	filter: brightness(1.2)
-}
-
-.loader span[data-v-99ec21a2] {
-	display: inline-block;
-	min-width: 30px;
-	text-align: left
-} */
-
 @-webkit-keyframes background-animation {
 	to {
 		background-position: 0 0
@@ -1100,7 +1054,7 @@
 
 html {
 	font-size: 62.5%;
-    background: #1e392a;
+    background: #111;
 }
 
 body {
@@ -1512,9 +1466,41 @@ h4 {
 	width: 133.332%
 }
 
+.iceberg3{
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 50000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
 
+    
+    animation-name: spin;
+    animation-duration: 50000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+}
+@-ms-keyframes spin {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
 .iceberg1,
-.iceberg3,
+
 .iceberg4,
 .icesmall1 {
 	-webkit-animation: floating 10s infinite;
@@ -1557,18 +1543,19 @@ h4 {
 
 .iceberg1,
 .iceberg2 {
-	width: 1070px;
-	height: 1011px;
+	width: 570px;
+	height: 511px;
 	position: absolute;
 	background: url(images/ice1.png);
 	background-repeat: no-repeat;
+    background-size: 50%, 50%;
 	z-index: -1
 }
 
 .iceberg2 {
 	transform: scaleX(-1);
 	top: -490px;
-	right: calc(-30% - 250px);
+	right: calc(-30% - 50px);
 
 	/* left: -890px; */
 	-webkit-animation-delay: 1s;
@@ -1576,14 +1563,20 @@ h4 {
 }
 
 .iceberg3 {
+	height: 111px;
+    width: 170px;
+
 	background: url(images/ice2.png);
-		height: 1011px;
 
 	background-repeat: no-repeat;
-	top: -10px;
-	right: calc(-1% + 1300px);
-	-webkit-animation-delay: -2s;
-	animation-delay: -2s
+    background-size: 100% 100%;
+
+	top: 200px;
+	right: calc(-1% + 1800px);
+	position: absolute;
+	z-index: -1
+	/* -webkit-animation-delay: -2s;
+	animation-delay: -2s */
 }
 
 .iceberg4 {
@@ -1659,7 +1652,7 @@ h4 {
 	background-repeat: no-repeat;
 	z-index: -1;
 	bottom: -610px;
-	right: calc(-25% + 400px);
+	right: calc(50% - 1300px);
 
 
 }
@@ -1848,7 +1841,7 @@ h4 {
 
 .member .infos .nickname {
 	font-family: Rammetto One;
-	font-size: 2rem;
+	font-size: 1.8rem;
 	text-transform: uppercase
 }
 
@@ -1975,10 +1968,12 @@ footer#footer .contract a:hover {
 		justify-content: center;
 		text-align: center
 	}
+	
 }
 
 @media(max-width:800px) {
 	.iceberg1,
+	.iceberg2,
 	.iceberg3,
 	.icesmall1 {
 		display: none
@@ -2184,6 +2179,7 @@ footer#footer .contract a:hover {
 	.icesmall2 {
 		display: none
 	}
+	
 	#reveal .countdown .time {
 		width: 100%;
 		font-size: 30px

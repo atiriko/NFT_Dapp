@@ -920,52 +920,6 @@
 	}
 }
 
-/* .content-wallet[data-v-19a87593] {
-	margin-left: auto;
-	margin-right: 30px
-}
-
-.connect[data-v-19a87593],
-.disconnect[data-v-19a87593] {
-	background-color: #fff;
-	border-radius: 3px;
-	padding: 5px 20px 6px 20px;
-	display: inline-block;
-	font-size: 16px;
-	transition: filter .2s;
-	color: #000
-}
-
-.connect span[data-v-19a87593],
-.disconnect span[data-v-19a87593] {
-	display: inline-block;
-	width: 8px;
-	height: 8px;
-	background-color: #c0c835;
-	border-radius: 50%;
-	vertical-align: middle;
-	margin: 0 10px 0 0
-}
-
-.disconnect[data-v-19a87593] {
-	cursor: pointer;
-	margin-left: auto
-}
-
-.disconnect span[data-v-19a87593] {
-	background-color: #d82b2b
-}
-
-.disconnect[data-v-19a87593]:hover {
-	filter: brightness(1.2)
-}
-
-.loader span[data-v-99ec21a2] {
-	display: inline-block;
-	min-width: 30px;
-	text-align: left
-} */
-
 @-webkit-keyframes background-animation {
 	to {
 		background-position: 0 0
@@ -1887,7 +1841,7 @@ h4 {
 
 .member .infos .nickname {
 	font-family: Rammetto One;
-	font-size: 2rem;
+	font-size: 1.8rem;
 	text-transform: uppercase
 }
 

@@ -54,3 +54,7 @@ withdraw(): ƒ ()
 9. No fake news posts, DD, or information is allowed. This may result in a ban.
 
 10. Post content in the correct channels, or you will drive my OCD crazy.
+
+
+#E92163
+#21003F
