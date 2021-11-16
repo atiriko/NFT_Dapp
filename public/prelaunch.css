@@ -1568,59 +1568,59 @@ h4 {
     animation-timing-function: linear;
 }
 .portal1 {
-	top:  100px;
-	left: 150px;
-	width: 100px;
-	height: 100px;
+	top:  4vh;
+	left: 4vw;
+	width: 150px;
+	height: 150px;
 	position: absolute;
 	background: url(images/portal1.gif);
 	background-repeat: no-repeat;
-    background-size: 50%, 50%;
-	z-index: -1
+    background-size: 100%, 100%;
+	z-index: -2
 }
 .portal2 {
-	top:  1200px;
-	left: 1000px;
-	width: 100px;
-	height: 100px;
+	top:  70vh;
+	left: 70vw;
+	width: 150px;
+	height: 150px;
 	position: absolute;
 	background: url(images/portal2.gif);
 	background-repeat: no-repeat;
-    background-size: 50%, 50%;
-	z-index: -1
+    background-size: 100%, 100%;
+	z-index: -2
 }
 .portal3 {
-	top:  1700px;
-	left: 50px;
-	width: 100px;
-	height: 100px;
+	top:  110vh;
+	left: 10vh;
+	width: 150px;
+	height: 150px;
 	position: absolute;
 	background: url(images/portal3.gif);
 	background-repeat: no-repeat;
-    background-size: 50%, 50%;
-	z-index: -1
+    background-size: 100%, 100%;
+	z-index: -2
 }
 .portal4 {
-	top:  2500px;
-	left: 50px;
-	width: 100px;
-	height: 100px;
+	top:  180vh;
+	left: 70vw;
+	width: 150px;
+	height: 150px;
 	position: absolute;
 	background: url(images/portal1.gif);
 	background-repeat: no-repeat;
-    background-size: 50%, 50%;
-	z-index: -1
+    background-size: 100%, 100%;
+	z-index: -2
 }
 .portal5 {
-	top:  3000px;
-	left: 1200px;
-	width: 100px;
-	height: 100px;
+	top:  210vh;
+	left: 20vw;
+	width: 150px;
+	height: 150px;
 	position: absolute;
 	background: url(images/portal2.gif);
 	background-repeat: no-repeat;
-    background-size: 50%, 50%;
-	z-index: -1
+    background-size: 100%, 100%;
+	z-index: -2
 }
 
 .iceberg2 {
@@ -1706,7 +1706,7 @@ h4 {
 	height: 1020px;
 	position: absolute;
 	right: calc(20% + 400px);
-	bottom: -670px;
+	bottom: -270px;
 	vertical-align: bottom;
 	background: url(images/tree1.png);
 	
@@ -1722,7 +1722,7 @@ h4 {
 	background: url(images/tree2.png);
 	background-repeat: no-repeat;
 	z-index: -1;
-	bottom: -610px;
+	bottom: -210px;
 	right: calc(50% - 1300px);
 
 
