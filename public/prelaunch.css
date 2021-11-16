@@ -1551,6 +1551,77 @@ h4 {
     background-size: 50%, 50%;
 	z-index: -1
 }
+.portal1,
+.portal2,
+.portal3,
+.portal4,
+.portal5{
+	-webkit-animation-name: spin;
+    -webkit-animation-duration: 50000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+
+    
+    animation-name: spin;
+    animation-duration: 50000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+.portal1 {
+	top:  100px;
+	left: 150px;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	background: url(images/portal1.gif);
+	background-repeat: no-repeat;
+    background-size: 50%, 50%;
+	z-index: -1
+}
+.portal2 {
+	top:  1200px;
+	left: 1000px;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	background: url(images/portal2.gif);
+	background-repeat: no-repeat;
+    background-size: 50%, 50%;
+	z-index: -1
+}
+.portal3 {
+	top:  1700px;
+	left: 50px;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	background: url(images/portal3.gif);
+	background-repeat: no-repeat;
+    background-size: 50%, 50%;
+	z-index: -1
+}
+.portal4 {
+	top:  2500px;
+	left: 50px;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	background: url(images/portal1.gif);
+	background-repeat: no-repeat;
+    background-size: 50%, 50%;
+	z-index: -1
+}
+.portal5 {
+	top:  3000px;
+	left: 1200px;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	background: url(images/portal2.gif);
+	background-repeat: no-repeat;
+    background-size: 50%, 50%;
+	z-index: -1
+}
 
 .iceberg2 {
 	transform: scaleX(-1);
@@ -1972,6 +2043,11 @@ footer#footer .contract a:hover {
 }
 
 @media(max-width:800px) {
+	.portal1,
+    .portal2,
+    .portal3,
+    .portal4,
+    .portal5,
 	.iceberg1,
 	.iceberg2,
 	.iceberg3,
