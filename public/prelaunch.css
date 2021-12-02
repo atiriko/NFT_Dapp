@@ -1551,11 +1551,46 @@ h4 {
     background-size: 50%, 50%;
 	z-index: -1
 }
-.portal1,
-.portal2,
-.portal3,
-.portal4,
-.portal5{
+
+.portal1{
+	-webkit-animation-name: spin;
+    -webkit-animation-duration: 100000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+
+    
+    animation-name: spin;
+    animation-duration: 100000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.portal2{
+	-webkit-animation-name: spin;
+    -webkit-animation-duration: 80000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+
+    
+    animation-name: spin;
+    animation-duration: 80000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.portal3{
+	-webkit-animation-name: spin;
+    -webkit-animation-duration: 20000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+
+    
+    animation-name: spin;
+    animation-duration: 20000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+.portal4{
 	-webkit-animation-name: spin;
     -webkit-animation-duration: 50000ms;
     -webkit-animation-iteration-count: infinite;
@@ -1567,6 +1602,19 @@ h4 {
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
+.portal5{
+	-webkit-animation-name: spin;
+    -webkit-animation-duration: 130000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+
+    
+    animation-name: spin;
+    animation-duration: 130000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
 .portal1 {
 	top:  4vh;
 	left: 4vw;
