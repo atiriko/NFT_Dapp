@@ -4,13 +4,16 @@
     "public": "build",
     "ignore": [
       "firebase.json",
-      "**/.*",
+      "**/.*", 
       "**/node_modules/**"
     ],
     "rewrites": [
       {
+        "source": "/",
+        "destination": "/public/prelaunch.html"
+      },{
         "source": "**",
-        "destination": "/public/index.html"
+        "destination": "/public/prelaunch.html"
       }
     ]
   }

@@ -27,11 +27,11 @@ let star = [];
 
 function setup(){
   if (windowWidth<800){
-    canvas = createCanvas(windowWidth,4000)
+    canvas = createCanvas(windowWidth,2400)
 
   }else{
 
-    canvas = createCanvas(windowWidth,3500)
+    canvas = createCanvas(windowWidth,2400)
 
   }
   canvas.position(0,0)
@@ -50,9 +50,9 @@ function setup(){
 function windowResized(){
   
   if (windowWidth<800){
-    resizeCanvas(windowWidth,4000)
+    resizeCanvas(windowWidth,2400)
   }else{
-    resizeCanvas(windowWidth,3500)
+    resizeCanvas(windowWidth,2400)
   }
 
   star = []
