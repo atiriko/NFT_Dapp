@@ -2,6 +2,8 @@
 import Web3EthContract from "web3-eth-contract";
 import Web3 from "web3";
 import SmartContract from "../../contracts/foranimals.json";
+import PresaleContract from "../../contracts/presale.json";
+
 // log
 import { fetchData } from "../data/dataActions";
 import fs from 'fs';
@@ -59,14 +61,18 @@ export const connect = () => {
           Web3EthContract.setProvider(web3.givenProvider);
           var web3 = new Web3(web3.givenProvider);
           
-          const SmartContractObj = new Web3EthContract(
-            SmartContract.abi,
-            "0x643afFdCC6Ff82611e180Cb96A83338Ec955C83a"
+          // const SmartContractObj = new Web3EthContract(
+          //   SmartContract.abi,
+          //   "0xd983B09B5233Ba78592EbC448B2a0C12A485E3F5"
+          // );
+          const PresaleContractObj = new Web3EthContract(
+            PresaleContract.abi,
+            "0x4A75962B3e51e09fe5D88D0EA23fB7C34f0D649e"
           );
           dispatch(
             connectSuccess({
               account: accounts[0],
-              smartContract: SmartContractObj,
+              smartContract: PresaleContractObj,
               web3: web3,
             })
           );
@@ -82,6 +88,7 @@ export const connect = () => {
           dispatch(connectFailed("Change network to Etherium."));
         }
       } catch (err) {
+        console.log(err)
         dispatch(connectFailed("Waiting for permission"));
 
 

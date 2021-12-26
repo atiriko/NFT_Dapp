@@ -1,0 +1,46 @@
+{
+	"compiler": {
+		"version": "0.8.11+commit.d7f03943"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "String operations.",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/FlattenedSmartContract.sol": "Strings"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/FlattenedSmartContract.sol": {
+			"keccak256": "0x494ed499c103366c377c46b308f303b465ab8bfed18ff307bd08d7f0b9889c84",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://4a970e73e1c56f54a6e3d68493c4c9eb4a52a66db4ef93f9c322ad789da44d3c",
+				"dweb:/ipfs/QmX8w3UgtcnQqxaUNVVNDNVKoGNhCF73qmDa1CzhuvkYcn"
+			]
+		}
+	},
+	"version": 1
+}

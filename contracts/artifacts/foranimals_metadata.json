@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
+		"version": "0.8.11+commit.d7f03943"
 	},
 	"language": "Solidity",
 	"output": {
@@ -20,6 +20,11 @@
 					{
 						"internalType": "string",
 						"name": "_initBaseURI",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_notRevealedURI",
 						"type": "string"
 					}
 				],
@@ -93,6 +98,37 @@
 					}
 				],
 				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"components": [
+							{
+								"internalType": "address payable",
+								"name": "account",
+								"type": "address"
+							},
+							{
+								"internalType": "uint96",
+								"name": "value",
+								"type": "uint96"
+							}
+						],
+						"indexed": false,
+						"internalType": "struct LibPart.Part[]",
+						"name": "royalties",
+						"type": "tuple[]"
+					}
+				],
+				"name": "RoyaltiesSet",
 				"type": "event"
 			},
 			{
@@ -185,7 +221,33 @@
 			},
 			{
 				"inputs": [],
+				"name": "charityAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "cost",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "discount",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -218,6 +280,37 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "getRaribleV2Royalties",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address payable",
+								"name": "account",
+								"type": "address"
+							},
+							{
+								"internalType": "uint96",
+								"name": "value",
+								"type": "uint96"
+							}
+						],
+						"internalType": "struct LibPart.Part[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "owner",
 						"type": "address"
@@ -229,6 +322,25 @@
 					}
 				],
 				"name": "isApprovedForAll",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"name": "isWhitelisted",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -284,6 +396,37 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "_users",
+						"type": "address[]"
+					}
+				],
+				"name": "mintPreordered",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_from",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_to",
+						"type": "uint256"
+					}
+				],
+				"name": "mintToOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "name",
 				"outputs": [
@@ -291,6 +434,32 @@
 						"internalType": "string",
 						"name": "",
 						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "notRevealedUri",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "onlyWhitelisted",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -355,6 +524,37 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "percentage",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "presents",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -372,6 +572,55 @@
 				"name": "renounceOwnership",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "reveal",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "revealed",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_salePrice",
+						"type": "uint256"
+					}
+				],
+				"name": "royaltyInfo",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "royaltyAmount",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -472,12 +721,100 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "_newCharityAddress",
+						"type": "address"
+					}
+				],
+				"name": "setCharityAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "_newCost",
 						"type": "uint256"
 					}
 				],
 				"name": "setCost",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_newDiscount",
+						"type": "uint256"
+					}
+				],
+				"name": "setDiscount",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_notRevealedURI",
+						"type": "string"
+					}
+				],
+				"name": "setNotRevealedURI",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "_state",
+						"type": "bool"
+					}
+				],
+				"name": "setOnlyWhitelisted",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_newPercentage",
+						"type": "uint256"
+					}
+				],
+				"name": "setPercentage",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address payable",
+						"name": "_royaltiesRecipientAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint96",
+						"name": "_percentageBasisPoints",
+						"type": "uint96"
+					}
+				],
+				"name": "setRoyalties",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -673,6 +1010,19 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address[]",
+						"name": "_users",
+						"type": "address[]"
+					}
+				],
+				"name": "whitelistUsers",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "",
 						"type": "address"
@@ -776,8 +1126,8 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
-			"runs": 200
+			"enabled": true,
+			"runs": 1000
 		},
 		"remappings": []
 	},
@@ -878,12 +1228,52 @@
 				"dweb:/ipfs/QmcsVgLgzWdor3UnAztUkXKNGcysm1MPneWksF72AvnwBx"
 			]
 		},
+		"contracts/@rarible/royalties/LibPart.sol": {
+			"keccak256": "0x5661c28a5f7cb4fae03685d2ab1b77d99e4e5d27f077d3618178175cb31fb002",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://64946d4ccb9b1789a939606bd2d2d221ef5ba13249f1b17f06fc6c50d4711f10",
+				"dweb:/ipfs/QmNVGsSVSnbkriZu5LzJiaMoRCV31UiENKYiVVEPXNZWTa"
+			]
+		},
+		"contracts/@rarible/royalties/LibRoyaltiesV2.sol": {
+			"keccak256": "0x8ba2ef410d4ebff0cfb4dbe2e9559359a9635c20c4abb5e10a0e2ec11a36766e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://922a2be7ab19ed0637a70cd5f0a16faebbc01044b35dbaae9937407487ff3c22",
+				"dweb:/ipfs/QmbL9GteKy4mGeBYTbJAhkM7eMJHqAmwXAr35F3NHGzYYm"
+			]
+		},
+		"contracts/@rarible/royalties/RoyaltiesV2.sol": {
+			"keccak256": "0x17ea04ff12f3767aadec79c593307c5d3015a1d3dc7aecb7600f186ef52f0347",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b5266141f1a2861361ef5154fec04d80e04f7b27cf9351d684f590b159edebc0",
+				"dweb:/ipfs/QmY9kaZmuPVW2MFwf6dK4uCm3cQnqapURkFCNMgD5Q8CTP"
+			]
+		},
+		"contracts/@rarible/royalties/contracts/AbstractRoyalties.sol": {
+			"keccak256": "0x448df149e62385afb98d64c0a56e6125d311bbbce40dd165aebf0f47bcd263cc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a7a34360a242eea23944d3cf6259f5060f5c74339d5de3c9463792d84f30e3e6",
+				"dweb:/ipfs/QmPTXpSvBat6gH1WV38pAugsaYmdqvA1ycUQasFXgWEfqE"
+			]
+		},
+		"contracts/@rarible/royalties/contracts/RoyaltiesV2Impl.sol": {
+			"keccak256": "0x6d6aafff3101a905156ca0b44a8ad0d3f39ef672989aa32e31ff68f2467ef8c5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://208199960b82616db31c9c611883674a38acb2b819bcac368549f4eba0cfdf42",
+				"dweb:/ipfs/Qme5HJCuJzYqy3zne3o3zQUP9njyNeY6sMQHNeq7csEMh7"
+			]
+		},
 		"contracts/SmartContract.sol": {
-			"keccak256": "0x0b0ea9b1446c944887ac5db64c9aed22d9216d509fb72b4e41a1c28313bd57ff",
+			"keccak256": "0x126058823c041ca72aee168ad3090c7874e18934921a5323496631aaf909ac24",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://b4841a81cd612e635a78067718fcdf8e3ee771a6f94eb07003a4a811f1ef48d8",
-				"dweb:/ipfs/QmeuWpriitU3YzzYt6dBhMfa3ouZHfaFvJQsbZKUe39tRY"
+				"bzz-raw://120965725ffbcc17d8634a0258c6e23e66212eb113c60affa7fe9ace0637efaa",
+				"dweb:/ipfs/Qmf71yMLJ1c8jTmFGDC9oVavu5nF99uUTuq6MFqZY6CMTi"
 			]
 		}
 	},

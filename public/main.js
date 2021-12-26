@@ -31,7 +31,7 @@ function setup(){
 
   }else{
 
-    canvas = createCanvas(windowWidth,4900)
+    canvas = createCanvas(windowWidth,3600)
 
   }
   canvas.position(0,0)

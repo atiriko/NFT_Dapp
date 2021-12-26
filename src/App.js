@@ -8,12 +8,15 @@ import styled from "styled-components";
 import store from "./redux/store";
 import TextField from 'material-ui/TextField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import { darkWhite } from "material-ui/styles/colors";
 
 
 // import TextField from "../node_modules/material-ui/TextField";
 
 
-
+var Contract = "0xd983B09B5233Ba78592EbC448B2a0C12A485E3F5";
 export const StyledButton = styled.button`
 font-family: Lato;
 	font-size: 1.6rem;
@@ -167,7 +170,6 @@ const MintButton = () => {
       return;
     }
     
-    setFeedback("Minting your Nerdy Coder Clone...");
     setClaimingNft(true);
     blockchain.smartContract.methods.cost()
     .call()
@@ -178,7 +180,7 @@ const MintButton = () => {
       .mint(blockchain.account, _amount)
       .send({
         gasLimit: "285000",
-        to: "0x6666a1F91f76BE55A9D41c1f0515981f09a4536C",
+        to: Contract,
         from: blockchain.account,
         value: blockchain.web3.utils.toWei((blockchain.web3.utils.fromWei((result).toString(), "ether") * _amount).toString(), "ether"),
       })
@@ -279,6 +281,8 @@ ReactDOM.render(<Provider store={store}>
 <MintButton/>
 </Provider>, dom);
 
+
+
 const AdminPanel = () => {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
@@ -308,7 +312,6 @@ const AdminPanel = () => {
     setBaseURI(newUrl)
       .send({
         gasLimit: "285000",
-        // to: "0x643afFdCC6Ff82611e180Cb96A83338Ec955C83a",
         from: blockchain.account,
       }) 
       .once("error", (err) => {
@@ -322,7 +325,6 @@ const AdminPanel = () => {
     setCost(blockchain.web3.utils.toWei((newPrie).toString(), "ether"))
       .send({
         gasLimit: "285000",
-        // to: "0x643afFdCC6Ff82611e180Cb96A83338Ec955C83a",
         from: blockchain.account,
       }) 
       .once("error", (err) => {
@@ -443,6 +445,166 @@ const dom1 = document.querySelector('#withdraw_button_container');
 ReactDOM.render(<Provider store={store}>
 <AdminPanel/>
 </Provider>, dom1);
+
+const CheckButton = () => {
+  const dispatch = useDispatch();
+  const blockchain = useSelector((state) => state.blockchain);
+  // const data = useSelector((state) => state.data);
+  const [feedback, setFeedback] = useState("Maybe it's your lucky day.");
+  const [claimingNft, setClaimingNft] = useState(false);
+  const [NftId, setID] = useState();
+
+  const present = (id) => {
+    if (id <= 0) {
+      return;
+    }
+    
+    setClaimingNft(true);
+   
+      blockchain.smartContract.methods
+      .presents(blockchain.account, id)
+      .send({
+        gasLimit: "285000",
+        to: Contract,
+        from: blockchain.account,
+      })
+      .once("error", (err) => {
+        console.log(err);
+        setFeedback("Sorry, something went wrong please try again later.");
+        setClaimingNft(false);
+      })
+      .then((receipt) => {
+   
+        setClaimingNft(false);
+        dispatch(fetchData(blockchain.account));
+      });
+    
+  };
+  
+
+  const getData = () => {
+    if (blockchain.account !== "" && blockchain.smartContract !== null) {
+      dispatch(fetchData(blockchain.account));
+    }
+  };
+  const Disconnect = () => {
+    if (blockchain.account !== "" && blockchain.smartContract !== null) {
+      dispatch(fetchData(blockchain.account));
+    }
+  };
+  const styles = theme => ({
+    textField: {
+       
+    },
+    input: {
+        color: 'white'
+    }
+});
+
+  useEffect(() => {
+    getData();
+  }, [blockchain.account]);
+
+
+
+    return (
+      <s.Container
+      flex={1}
+      jc={"center"}
+      ai={"center"}
+    >
+             <>
+
+          {blockchain.account === undefined ||
+          blockchain.smartContract === null ? (
+            <s.Container ai={"center"} jc={"center"}>
+              <s.SpacerSmall />
+              <StyledButton
+                onClick={(e) => {
+                  e.preventDefault();
+                  dispatch(connect());
+                  getData();
+                }}
+                
+              >
+                Wallet not connected
+              </StyledButton>
+              
+            </s.Container>
+          ) : (
+            <s.Container ai={"center"} jc={"center"}>
+            <s.SpacerSmall />
+            <MuiThemeProvider>
+
+            <div>
+
+            <TextField
+            style={{
+              width:"200px",
+              height:"40px",
+              borderRadius:"5px",
+              backgroundColor: "white",
+              disableUnderline:true,
+              marginRight:"20px",
+              textAlign:"center"
+          }}
+         
+    value={NftId}
+    placeholder=" Check eligibility EG:234"
+    name = "check"
+    variant="filled"
+    color="warning"
+    
+    onChange={(e) => {
+      setID(e.target.value);
+    }}
+   
+    
+  />
+
+
+         <StyledButton
+         
+          onClick={(e) => {
+            e.preventDefault();
+            
+            if( Number.isInteger(parseInt(NftId))){
+              present(NftId)
+            }
+
+          }}
+          
+        >
+            Check
+        </StyledButton>
+</div>
+
+</MuiThemeProvider>
+
+            {blockchain.errorMsg == "" ? (
+              <>
+                <s.SpacerSmall />
+                <s.TextDescription style={{ textAlign: "center" }}>
+                  {blockchain.errorMsg}
+                </s.TextDescription>
+              </>
+            ) : null}
+          </s.Container>
+           
+          )}
+        </>
+
+    </s.Container>
+
+    )
+
+  
+}
+
+const dom2 = document.querySelector('#check_button_container');
+ReactDOM.render(<Provider store={store}>
+<CheckButton/>
+</Provider>, dom2);
 
 function App (){
 const dispatch = useDispatch();
