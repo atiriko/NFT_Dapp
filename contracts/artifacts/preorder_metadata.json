@@ -65,6 +65,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "numberSold",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "owner",
 				"outputs": [
 					{
@@ -149,7 +162,7 @@
 		},
 		"optimizer": {
 			"enabled": true,
-			"runs": 1000
+			"runs": 200
 		},
 		"remappings": []
 	},
@@ -171,11 +184,11 @@
 			]
 		},
 		"contracts/Preorder.sol": {
-			"keccak256": "0xa72390bef241a4423c44093402e75ff13bc1cda1d798aaf492082e7c0a97922e",
+			"keccak256": "0xd8559bd457015cf5a5913f02edb3f78c367f7718f9c4383e8cde42798639720f",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://0b89314844a987dcdfb91987724e906e6c1c9642cab8116b917a8e453f95fcc1",
-				"dweb:/ipfs/QmakeeyamxUajWrRUhuw7XEPTe5zfd4mTzF3FwrB3sracb"
+				"bzz-raw://596ad4f9fb634c2ab9b91a7ef01b467d2eb6de70194d845bc576dfe8a0bf82c6",
+				"dweb:/ipfs/QmSiF3CaZHVxkfh48EXkHGB1tcb6mxqQB3sUtXHmXMG51A"
 			]
 		}
 	},

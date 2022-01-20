@@ -42,8 +42,8 @@ export const connect = () => {
     const { ethereum } = window;
     const metamaskIsInstalled = ethereum && ethereum.isMetaMask;
     if (metamaskIsInstalled) {
-      Web3EthContract.setProvider('https://rinkeby.infura.io/v3/aa024e76b2f34f17805dc2320b395cd8');
-      var web3 = new Web3('https://rinkeby.infura.io/v3/aa024e76b2f34f17805dc2320b395cd8');
+      Web3EthContract.setProvider('https://mainnet.infura.io/v3/aa024e76b2f34f17805dc2320b395cd8');
+      var web3 = new Web3('https://mainnet.infura.io/v3/aa024e76b2f34f17805dc2320b395cd8');
       // 'https://rinkeby.infura.io/v3/aa024e76b2f34f17805dc2320b395cd8'
      // let web3 = new Web3(ethereum);
       try {
@@ -53,11 +53,9 @@ export const connect = () => {
         const networkId = await ethereum.request({
           method: "net_version",
         });
-        console.log(networkId);
 
         // const NetworkData = await SmartContract.networks[networkId];
-        if (parseInt(networkId) == 4) {
-          console.log(web3.givenProvider)
+        if (parseInt(networkId) == 1) {
           Web3EthContract.setProvider(web3.givenProvider);
           var web3 = new Web3(web3.givenProvider);
           
@@ -67,7 +65,7 @@ export const connect = () => {
           // );
           const PresaleContractObj = new Web3EthContract(
             PresaleContract.abi,
-            "0x4A75962B3e51e09fe5D88D0EA23fB7C34f0D649e"
+            "0xF9e2898CCf127b09BbeD03FEca91756A01AA7aE0"
           );
           dispatch(
             connectSuccess({

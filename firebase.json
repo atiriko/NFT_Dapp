@@ -6,15 +6,6 @@
       "firebase.json",
       "**/.*", 
       "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "/",
-        "destination": "/public/prelaunch.html"
-      },{
-        "source": "**",
-        "destination": "/public/prelaunch.html"
-      }
     ]
   }
 }

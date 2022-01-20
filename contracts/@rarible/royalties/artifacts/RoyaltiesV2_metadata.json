@@ -89,7 +89,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -104,11 +104,11 @@
 			]
 		},
 		"contracts/@rarible/royalties/RoyaltiesV2.sol": {
-			"keccak256": "0x17ea04ff12f3767aadec79c593307c5d3015a1d3dc7aecb7600f186ef52f0347",
+			"keccak256": "0x3d94216b0f97611182af8c57f576ef430da35ce140be1f31f09ee1db510c9837",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b5266141f1a2861361ef5154fec04d80e04f7b27cf9351d684f590b159edebc0",
-				"dweb:/ipfs/QmY9kaZmuPVW2MFwf6dK4uCm3cQnqapURkFCNMgD5Q8CTP"
+				"bzz-raw://b1466f306f764d2a3b6010a900d7935d1f3861a9d58572e3ae77427fd75b2b78",
+				"dweb:/ipfs/QmbPfXYhRPVRxoAmoRBnZrtfKnouXHjhTmibc6ReLZNdNR"
 			]
 		}
 	},

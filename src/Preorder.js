@@ -16,7 +16,7 @@ import { darkWhite } from "material-ui/styles/colors";
 // import TextField from "../node_modules/material-ui/TextField";
 
 
-var Contract = "0x4A75962B3e51e09fe5D88D0EA23fB7C34f0D649e";
+var Contract = "0xF9e2898CCf127b09BbeD03FEca91756A01AA7aE0";
 export const StyledButton = styled.button`
 font-family: Lato;
 	font-size: 1.6rem;
@@ -252,7 +252,7 @@ const MintButton = () => {
               }}
               
             >
-              Preorder
+              Preorder for %50 off
             </StyledButton>
             {blockchain.errorMsg == "" ? (
               <>
@@ -286,7 +286,7 @@ const AdminPanel = () => {
   const blockchain = useSelector((state) => state.blockchain);
   // const data = useSelector((state) => state.data);
   const [NewUrl, setName] = useState("");
-  const [NewPrice, setPrice] = useState();
+  const [NewPrice, setPrice] = useState("");
 
 
   //var isOwner;
@@ -305,22 +305,24 @@ const AdminPanel = () => {
         dispatch(fetchData(blockchain.account));
       });
   };
-  const changeUrl = (newUrl) => {
-    blockchain.smartContract.methods.
-    setBaseURI(newUrl)
-      .send({
-        gasLimit: "285000",
-        from: blockchain.account,
-      }) 
-      .once("error", (err) => {
-      })
-      .then((receipt) => {
-        dispatch(fetchData(blockchain.account));
-      });
+  const Preordered = () => {
+    blockchain.smartContract.methods.numberSold()
+    .call()
+    .then(function(result) {
+      for(var i = 0; i<result; i++){
+      blockchain.smartContract.methods.Preordered(i)
+      .call()
+      .then(function(result) {
+        console.log(result)
+      });   
+    }
+     });
+   
+    
   };
   const changePrice = (newPrie) => {
     blockchain.smartContract.methods.
-    setCost(blockchain.web3.utils.toWei((newPrie).toString(), "ether"))
+    setPrice(blockchain.web3.utils.toWei((newPrie).toString(), "ether"))
       .send({
         gasLimit: "285000",
         from: blockchain.account,
@@ -376,31 +378,21 @@ const AdminPanel = () => {
             <s.SpacerSmall/>
             <MuiThemeProvider>
 
-            <div
-
-    >
-      <TextField
-        value={NewUrl}
-        label="Set Base Url"
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-      />
+            
              <StyledButton
               onClick={(e) => {
                 e.preventDefault();
 
                 //console.log(NewUrl)
-                changeUrl(NewUrl)
+                Preordered()
 
                 // withdraw();
                 // getData();
               }}
               
             >
-              Update url
+              Preordered
             </StyledButton>
-    </div>
     <div
 
 >
@@ -408,7 +400,7 @@ const AdminPanel = () => {
     value={NewPrice}
     label="Set Price"
     onChange={(e) => {
-      setPrice(parseInt(e.target.value));
+      setPrice(e.target.value);
     }}
   />
          <StyledButton
@@ -416,7 +408,7 @@ const AdminPanel = () => {
             e.preventDefault();
 
             //console.log(NewUrl)
-            changePrice(NewPrice)
+            changePrice(parseFloat(NewPrice))
 
             // withdraw();
             // getData();

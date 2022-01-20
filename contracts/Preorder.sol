@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0
-
+//npx truffle-flattener ./contracts/Preorder.sol > ./contracts/FlatPreorder.sol
 pragma solidity ^0.8.10;
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -7,7 +7,7 @@ contract preorder is Ownable {
 
 
   address[] public Preordered;
-  uint256 public cost = 0.025 ether;
+  uint public cost = 0.05 ether;
 
   function Preorder()public payable{
       require(Preordered.length <= 2500, "Presale has been sold out!");
@@ -27,11 +27,12 @@ contract preorder is Ownable {
         return false;
 
   }
-  // function GetPreorder()public onlyOwner view returns(address[] calldata){
-  //     return Preordered;25000000000000000
+  function numberSold()public view returns(uint){
+    return Preordered.length;
 
-  // }
-   function setPrice(uint256 price)public onlyOwner{
+  }
+
+   function setPrice(uint price)public onlyOwner{
       cost = price;
 
   }

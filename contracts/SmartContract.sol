@@ -4,15 +4,11 @@
 pragma solidity ^0.8.10;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
-
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "./@rarible/royalties/contracts/RoyaltiesV2Impl.sol";
-import "./@rarible/royalties/LibPart.sol";
-import "./@rarible/royalties/LibRoyaltiesV2.sol";
 
-contract foranimals is ERC721Enumerable, Ownable, RoyaltiesV2Impl {
+
+contract foranimals is ERC721Enumerable, Ownable {
   using Strings for uint256;
-  bytes4 private constant _INTERFACE_ID_ERC2981 = 0x2a55205a;
 
   string public baseURI;
   string public baseExtension = ".json";
@@ -78,7 +74,6 @@ contract foranimals is ERC721Enumerable, Ownable, RoyaltiesV2Impl {
     }
 
     for (uint256 i = 1; i <= _mintAmount; i++) {
-      setRoyalties(supply+i, payable(owner()), 700);
       _safeMint(_to, supply + i);
     }
   }
@@ -198,36 +193,7 @@ contract foranimals is ERC721Enumerable, Ownable, RoyaltiesV2Impl {
   function setCharityAddress(address _newCharityAddress) public onlyOwner{
     charityAddress = _newCharityAddress;
   }
-  function setRoyalties(uint _tokenId, address payable _royaltiesRecipientAddress, uint96 _percentageBasisPoints) public onlyOwner{
-    LibPart.Part[] memory _royalties = new LibPart.Part[](1);
-    _royalties[0].value = _percentageBasisPoints;
-    _royalties[0].account = _royaltiesRecipientAddress;
-    _saveRoyalties(_tokenId, _royalties);
-  }
-  function supportsInterface(bytes4 interfaceId) public view virtual override (ERC721Enumerable) returns (bool){
-    if (interfaceId == LibRoyaltiesV2._INTERFACE_ID_ROYALTIES){
-      return true;
-    }
-    if(interfaceId == _INTERFACE_ID_ERC2981){
-      return true;
-    }
-    return super.supportsInterface(interfaceId);
-  }
- function royaltyInfo(
-        uint256 _tokenId,
-        uint256 _salePrice
-    ) external view returns (
-        address receiver,
-        uint256 royaltyAmount
-    ){
-      LibPart.Part[] memory _royalties = royalties[_tokenId];
-      if(_royalties.length > 0 ){
-        return (_royalties[0].account, (_salePrice * _royalties[0].value)/10000);
-
-      }
-      return(address(0), 0);
-   
-    }
+ 
 
   function withdraw() public payable onlyOwner {
 
